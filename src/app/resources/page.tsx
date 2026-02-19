@@ -1,8 +1,10 @@
 import { Layers } from "lucide-react";
 import Link from "next/link";
 import { resources } from "@/data/resources";
-import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { GithubIcon } from "@/components/custom-icons";
+import { Button } from "@/components/ui/button";
 
 export default function ResourcesPage() {
   return (
@@ -21,31 +23,38 @@ export default function ResourcesPage() {
 						const Icon = resource.icon ?? Layers;
 						
 						return (
-							<Link
-								key={resource.id}
-								href={`/resources/${resource.id}`}
-								className="group"
-							>
-								<Card className="h-full transition-all hover:shadow-lg hover:border-primary/50">
-									<CardHeader>
-										<div className="flex items-start justify-between gap-4 mb-2">
-											<div className="size-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-												<Icon className="size-6 text-primary" />
-											</div>
-											<Badge variant="secondary">
-												{resource.redesigns.length} {resource.redesigns.length === 1 ? 'redesign' : 'redesigns'}
-											</Badge>
+							<Card key={resource.id} className="h-full transition-all hover:shadow-lg hover:border-primary/50">
+								<CardHeader>
+									<div className="flex items-start justify-between gap-4 mb-2">
+										<div className="size-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+											<Icon className="size-6 text-primary" />
 										</div>
-										<CardTitle className="group-hover:text-primary transition-colors">
-											{resource.name}
-										</CardTitle>
-										<CardDescription>
-											{resource.description}
-										</CardDescription>
-									</CardHeader>
-								</Card>
-							</Link>
-          	)
+										<Badge variant="secondary">
+											{resource.redesigns.length} {resource.redesigns.length === 1 ? 'redesign' : 'redesigns'}
+										</Badge>
+									</div>
+									<CardTitle className="group-hover:text-primary transition-colors">
+										{resource.name}
+									</CardTitle>
+								</CardHeader>
+								<CardContent>
+									{resource.description}
+								</CardContent>
+								<CardFooter className="grid grid-cols-2 gap-2 pt-4 border-t">
+									<Button variant="outline" size="sm" asChild>
+										<a href={resource.githubUrl} target="_blank" rel="noreferrer">
+											<GithubIcon className="mr-2 size-4" />
+											Code
+										</a>
+									</Button>
+									<Button size="sm" asChild>
+										<Link href={`/resources/${resource.id}`}>
+											View Redesigns
+										</Link>
+									</Button>
+								</CardFooter>
+							</Card>
+          	);
 					})}
         </div>
 
