@@ -20,5 +20,6 @@ export interface Resource {
 	name: string;
 	icon?: LucideIcon;
 	description: string;
+	githubUrl: string;
 	redesigns: Redesign[];
 }
