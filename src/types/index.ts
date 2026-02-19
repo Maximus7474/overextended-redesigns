@@ -6,12 +6,12 @@ export interface Redesign {
 	screenshot: string;
 	stars: number;
 	downloads: number;
-	mainShowcaseImage: string;
 	description: string;
 	features: string[];
 	requirements?: string[];
 	installationGuide?: string[];
 	githubUrl: string;
+	githubReleaseUrl?: string;
 	gallery: string[];
 }
 
