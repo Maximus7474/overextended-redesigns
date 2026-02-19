@@ -5,7 +5,7 @@ import { getResourceById } from "@/data/resources";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Star, Download, ArrowLeft } from "lucide-react";
+import { Star, ArrowLeft } from "lucide-react";
 import { GithubIcon } from "@/components/custom-icons";
 
 interface PageProps {
@@ -48,7 +48,7 @@ export default async function ResourceDetailPage({ params }: PageProps) {
           {resource.redesigns.map((redesign) => (
             <Link
               key={redesign.id}
-              href={`/resources/${resource.id}/redesigns/${redesign.id}`}
+              href={`/resources/${resource.id}/${redesign.id}`}
               className="group"
             >
               <Card className="h-full overflow-hidden transition-all hover:shadow-lg hover:border-primary/50 pt-0">
