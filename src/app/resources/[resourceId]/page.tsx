@@ -5,7 +5,7 @@ import { getResourceById } from "@/data/resources";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Star, ArrowLeft } from "lucide-react";
+import { Star, ArrowLeft, Layers } from "lucide-react";
 import { GithubIcon } from "@/components/custom-icons";
 
 interface PageProps {
@@ -104,6 +104,16 @@ export default async function ResourceDetailPage({ params }: PageProps) {
             </Link>
           ))}
         </div>
+
+				{resource.redesigns.length === 0 && (
+          <div className="text-center py-20">
+            <Layers className="size-16 mx-auto text-muted-foreground/50 mb-4" />
+            <h3 className="text-xl font-semibold mb-2">No Redesigns Yet</h3>
+            <p className="text-muted-foreground">
+              Check back soon for new redesigns!
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );
