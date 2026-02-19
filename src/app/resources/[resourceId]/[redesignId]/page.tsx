@@ -13,6 +13,7 @@ import {
   BookOpen 
 } from "lucide-react";
 import { GithubIcon } from "@/components/custom-icons";
+import { NotFoundDisplay } from "@/components/not-found";
 
 interface PageProps {
   params: Promise<{ 
@@ -24,10 +25,14 @@ interface PageProps {
 export default async function RedesignDetailPage({ params }: PageProps) {
   const { resourceId, redesignId } = await params;
   const redesign = getRedesignById(resourceId, redesignId);
-
-  if (!redesign) {
-    notFound();
-  }
+	
+		if (!redesign) {
+			return <NotFoundDisplay
+				title="Redesign not found"
+				message="The redesign you are looking for doesn't exist."
+				backLink={`/resources/${resourceId}`}
+			/>
+		}
 
   return (
     <div className="container mx-auto px-4 py-12">

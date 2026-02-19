@@ -1,12 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
-import { notFound } from "next/navigation";
 import { getResourceById } from "@/data/resources";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Star, ArrowLeft, Layers } from "lucide-react";
 import { GithubIcon } from "@/components/custom-icons";
+import { NotFoundDisplay } from "@/components/not-found";
 
 interface PageProps {
   params: Promise<{ resourceId: string }>;
@@ -17,7 +17,11 @@ export default async function ResourceDetailPage({ params }: PageProps) {
   const resource = getResourceById(resourceId);
 
   if (!resource) {
-    notFound();
+    return <NotFoundDisplay
+			title="Resource not found"
+			message="The resource you are looking for doesn't exist."
+			backLink="/resources"
+		/>
   }
 
   return (
