@@ -1,8 +1,10 @@
-import { GithubIcon } from "@/components/custom-icons";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowRight, Palette, Users } from "lucide-react";
 import Link from "next/link";
+import { GithubIcon } from "@/components/custom-icons";
+import MemberLink from "@/components/member-link";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
 
 export default function HomePage() {
   return (
@@ -68,11 +70,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="py-20 max-w-4xl mx-auto">
+      <section className="py-20 max-w-4xl mx-auto space-y-10">
         <Card>
           <CardHeader>
             <CardTitle className="text-3xl">About This Website</CardTitle>
           </CardHeader>
+
           <CardContent className="space-y-4 text-muted-foreground">
             <p>
               Overextended released many very popular resources, maintaining them and providing support for many years.
@@ -85,6 +88,27 @@ export default function HomePage() {
 							established in the base resources. Each listing has a link to the user having shared it with details on where
 							to find it as well as the features it provides.
             </p>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-3xl">Acknowledgements</CardTitle>
+          </CardHeader>
+
+          <CardContent className="space-y-4 text-muted-foreground">
+						<p>
+							If you've enjoyed using Overextended resources, please consider showing your appreciation to the original developers.
+							Open source development is too frequently abused and is on the decline within the FiveM community with more and more
+							people releasing escrowed resources.
+						</p>
+						
+						<Separator />
+
+						<div className="flex flex-row gap-16 justify-center">
+							<MemberLink image="https://avatars.githubusercontent.com/u/65407488?v=4" name="thelindat" sponsor="thelindat" />
+							<MemberLink image="https://avatars.githubusercontent.com/u/39926192?v=4" name="LukeWasTakenn" sponsor="lukewastaken" />
+						</div>
           </CardContent>
         </Card>
       </section>
