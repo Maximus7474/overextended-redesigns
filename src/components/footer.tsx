@@ -18,7 +18,7 @@ export default function Footer() {
                 • Required GitHub repository listing
               </li>
               <li className="flex items-start gap-2">
-                • Must comply with o
+                • Must comply with original repository license
               </li>
             </ul>
           </div>
