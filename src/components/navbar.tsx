@@ -2,6 +2,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { ModeToggle } from "./theme-toggle";
 
+const NAV_LINKS: { href: `/${string}`; label: string; }[] = [
+	{ href: '/', label: 'Home' },
+	{ href: '/resources', label: 'Resources' },
+	{ href: '/contribute', label: 'Contribute' },
+]
+
 export default function Navbar() {
 	return (
 		<header className="border-b sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -11,12 +17,15 @@ export default function Navbar() {
 					<span className="font-semibold text-lg">Overextended Redesigns</span>
 				</Link>
 				<nav className="flex items-center gap-6">
-					<Link href="/" className="text-sm hover:text-primary transition-colors">
-						Home
-					</Link>
-					<Link href="/resources" className="text-sm hover:text-primary transition-colors">
-						Resources
-					</Link>
+					{NAV_LINKS.map(({ href, label }) => (
+						<Link
+							key={href}
+							href={href}
+							className="text-sm hover:text-primary transition-colors"
+						>
+							{label}
+						</Link>
+					))}
 					<ModeToggle />
 				</nav>
 			</div>
