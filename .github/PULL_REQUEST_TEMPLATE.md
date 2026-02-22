@@ -1,9 +1,3 @@
----
-name: Redesign Contribution
-about: Submitting your redesign to be added to the project.
-
----
-
 ## Description
 
 ## Submission Checklist
