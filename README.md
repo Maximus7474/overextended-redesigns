@@ -34,8 +34,6 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 
 Contributors must follow [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/), proper commit messages ensure a clean and readable project history.
 
-![Commit Convention GIF](https://tenor.com/view/git-commit-convention-bonk-gif-7078399184631887263)
-
 ### Pull Request Process
 
 Because github is picky on how to have multiple PR templates (even though they say you can -> [github pull request templates](https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/creating-a-pull-request-template-for-your-repository)), please ignore the template and follow the one listed here below:
