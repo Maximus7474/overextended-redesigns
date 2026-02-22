@@ -1,3 +1,9 @@
+---
+name: Project Enhancement
+about: Changes made to the projects code
+
+---
+
 ## Description
 
 ### Rationale
