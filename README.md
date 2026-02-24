@@ -9,10 +9,12 @@
 > It is a third party project to contribute externally with these projects by serving as a central point to share redesigns of the resources created originally by overextended.
 
 ## Contributing
+ 
+To guarantee that every redesign listed here is safe, performant, and follows decent coding practices, we hold all contributors to a high standard.
 
-Before opening a Pull Request to add your redesign, please read thoroughly the [submission guidelines](https://overextended-redesigns-bnnw.vercel.app/contribute) listed on the website. Any PR created that does not follow these will be closed and not considered unless changes have been made that make it so it follows them.
+Before opening a Pull Request, ensure your work aligns with our [submission guidelines](https://www.youtube.com/watch?v=dQw4w9WgXcQ). Submissions are manually vetted; if a PR is incomplete or does not meet our quality bar, it will not be merged.
 
-Each pull request should only add a single redesign, the redesign has to be created by the user opening the pull request or have the authorization of the original creator to be shared here.
+*Note: You must own the redesign or provide proof of authorization to share it. Please submit only one redesign per PR.*
 
 ## Development Guide
 
