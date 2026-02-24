@@ -4,8 +4,8 @@ export interface Redesign {
 	id: string;
 	name: string;
 	screenshot: string;
-	stars: number;
-	downloads: number;
+	// stars: number;
+	// downloads: number;
 	description: string;
 	features: string[];
 	requirements?: string[];

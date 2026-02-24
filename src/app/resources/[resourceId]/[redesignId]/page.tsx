@@ -60,20 +60,22 @@ export default async function RedesignDetailPage({ params }: PageProps) {
           <div className="space-y-4">
             <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
               <div>
-                <h1 className="text-4xl font-bold tracking-tight mb-2 italic uppercase">
+                <h1 className="text-4xl font-bold tracking-tight mb-2 uppercase">
                   {redesign.name}
                 </h1>
                 <p className="text-lg text-muted-foreground max-w-2xl">
                   {redesign.description}
                 </p>
               </div>
-              <div className="flex gap-4 md:flex-col md:items-end">
+              {/*
+							Future implementation, add star tracking
+							<div className="flex gap-4 md:flex-col md:items-end">
                 <div className="flex items-center gap-2 text-muted-foreground bg-secondary/50 px-3 py-1.5 rounded-full border">
                   <Star className="size-4 fill-yellow-500 text-yellow-500" />
                   <span className="font-semibold">{redesign.stars.toLocaleString()}</span>
                   <span className="text-xs uppercase tracking-wider">stars</span>
                 </div>
-              </div>
+              </div> */}
             </div>
 
             {/* Action Buttons */}

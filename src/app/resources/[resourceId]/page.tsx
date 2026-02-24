@@ -69,7 +69,7 @@ export default async function ResourceDetailPage({ params }: PageProps) {
   );
 }
 
-function ResourceCard({ id, screenshot, name, description, stars, features, resourceId }: Redesign & { resourceId: string }) {
+function ResourceCard({ id, screenshot, name, description, features, resourceId }: Redesign & { resourceId: string }) {
 	return (
 		<Link
 			key={id}
@@ -88,12 +88,14 @@ function ResourceCard({ id, screenshot, name, description, stars, features, reso
 				</div>
 
 				<CardHeader className="relative">
+					{/* 
+					Future implementation, add star tracking
 					<div
 						className="absolute -top-2 right-3 z-20 flex items-center gap-1.5 px-2 py-1 text-xs font-semibold"
 					>
 						<Star className="size-4 fill-current" />
 						<span>{stars.toLocaleString()}</span>
-					</div>
+					</div> */}
 
 					<CardTitle className="group-hover:text-primary transition-colors">
 						{name}
