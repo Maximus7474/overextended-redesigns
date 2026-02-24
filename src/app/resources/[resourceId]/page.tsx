@@ -4,13 +4,29 @@ import { getResourceById } from "@/data/resources";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Star, ArrowLeft, Layers } from "lucide-react";
+import { ArrowLeft, Layers } from "lucide-react";
 import { GithubIcon } from "@/components/custom-icons";
 import { NotFoundDisplay } from "@/components/not-found";
 import { Redesign } from "@/types";
+import { Metadata } from "next";
 
 interface PageProps {
   params: Promise<{ resourceId: string }>;
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { resourceId } = await params;
+  const resource = getResourceById(resourceId);
+
+	if (!resource) return {};
+
+	const description = 
+    resource.description.charAt(0).toLowerCase() + resource.description.slice(1);
+
+  return {
+    title: `${resource.name} - Ox Redesigns`,
+    description: `Redesigns of ${resource.name}, ${description}`,
+  }
 }
 
 export default async function ResourceDetailPage({ params }: PageProps) {
