@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { GithubIcon } from "@/components/custom-icons";
 import { NotFoundDisplay } from "@/components/not-found";
+import FullScreenImage from "@/components/fullscreen-image";
 
 interface PageProps {
   params: Promise<{ 
@@ -183,10 +184,10 @@ export default async function RedesignDetailPage({ params }: PageProps) {
             <div className="grid md:grid-cols-2 gap-6">
               {redesign.gallery.map((image, index) => (
                 <div key={index} className="relative aspect-video rounded-xl overflow-hidden border bg-muted shadow-sm group">
-                  <Image
+                  <FullScreenImage
                     src={image}
                     alt={`${redesign.name} screenshot ${index + 1}`}
-                    className="object-cover"
+                    imageClassName="object-cover"
                     sizes="(max-width: 768px) 100vw, 50vw"
 										width={768}
 										height={768}
