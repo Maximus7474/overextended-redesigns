@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Star, ArrowLeft, Layers } from "lucide-react";
 import { GithubIcon } from "@/components/custom-icons";
 import { NotFoundDisplay } from "@/components/not-found";
+import { Redesign } from "@/types";
 
 interface PageProps {
   params: Promise<{ resourceId: string }>;
@@ -49,64 +50,9 @@ export default async function ResourceDetailPage({ params }: PageProps) {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {resource.redesigns.map((redesign) => (
-            <Link
-              key={redesign.id}
-              href={`/resources/${resource.id}/${redesign.id}`}
-              className="group"
-            >
-              <Card className="h-full overflow-hidden transition-all hover:shadow-lg hover:border-primary/50 pt-0">
-                <div className="relative aspect-video overflow-hidden bg-muted">
-                  <Image
-                    src={redesign.screenshot}
-                    alt={redesign.name}
-                    fill
-                    className="object-cover transition-transform group-hover:scale-105"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  />
-                </div>
-
-                <CardHeader className="relative">
-									<div
-										className="absolute -top-2 right-3 z-20 flex items-center gap-1.5 px-2 py-1 text-xs font-semibold"
-									>
-										<Star className="size-4 fill-current" />
-										<span>{redesign.stars.toLocaleString()}</span>
-									</div>
-
-                  <CardTitle className="group-hover:text-primary transition-colors">
-                    {redesign.name}
-                  </CardTitle>
-                  <CardDescription className="line-clamp-2">
-                    {redesign.description}
-                  </CardDescription>
-                </CardHeader>
-
-                <CardContent className="space-y-4">
-                  <div className="flex flex-wrap gap-1.5">
-                    {redesign.features.slice(0, 2).map((feature, index) => (
-                      <Badge key={index} variant="outline" className="text-xs">
-                        {feature}
-                      </Badge>
-                    ))}
-                    {redesign.features.length > 2 && (
-                      <Badge variant="outline" className="text-xs">
-                        +{redesign.features.length - 2} more
-                      </Badge>
-                    )}
-                  </div>
-
-									<Button
-										variant="ghost"
-										size="sm"
-										className="w-full"
-									>
-										View details
-									</Button>
-                </CardContent>
-              </Card>
-            </Link>
-          ))}
+					{resource.redesigns.map((redesign) => (
+						<ResourceCard key={redesign.id} {...redesign} resourceId={resource.id} />
+					))}
         </div>
 
 				{resource.redesigns.length === 0 && (
@@ -121,4 +67,63 @@ export default async function ResourceDetailPage({ params }: PageProps) {
       </div>
     </div>
   );
+}
+
+function ResourceCard({ id, screenshot, name, description, stars, features, resourceId }: Redesign & { resourceId: string }) {
+	return (
+		<Link
+			key={id}
+			href={`/resources/${resourceId}/${id}`}
+			className="group"
+		>
+			<Card className="h-full overflow-hidden transition-all hover:shadow-lg hover:border-primary/50 pt-0">
+				<div className="relative aspect-video overflow-hidden bg-muted">
+					<Image
+						src={screenshot}
+						alt={name}
+						fill
+						className="object-cover transition-transform group-hover:scale-105"
+						sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+					/>
+				</div>
+
+				<CardHeader className="relative">
+					<div
+						className="absolute -top-2 right-3 z-20 flex items-center gap-1.5 px-2 py-1 text-xs font-semibold"
+					>
+						<Star className="size-4 fill-current" />
+						<span>{stars.toLocaleString()}</span>
+					</div>
+
+					<CardTitle className="group-hover:text-primary transition-colors">
+						{name}
+					</CardTitle>
+					<CardDescription className="line-clamp-2">
+						{description}
+					</CardDescription>
+				</CardHeader>
+
+				<CardContent className="space-y-4">
+					<div className="flex flex-wrap gap-1.5">
+						{features.slice(0, 2).map((feature, index) => (
+							<Badge key={index} variant="outline" className="text-xs">
+								{feature}
+							</Badge>
+						))}
+						{features.length > 2 && (
+							<Badge variant="outline" className="text-xs">
+								+{features.length - 2} more
+							</Badge>
+						)}
+					</div>
+
+					<p
+						className="w-full text-center"
+					>
+						View details
+					</p>
+				</CardContent>
+			</Card>
+		</Link>
+	);
 }
