@@ -70,24 +70,28 @@ export default function SubmitPage() {
 							<Book className="size-6 text-primary" />
 							<h2 className="text-2xl font-bold">Contribution Rules</h2>
 						</div>
-						
+
 						<Card className="border-primary/10 bg-primary/5">
 							<CardContent>
 								<ul className="space-y-4">
 									{[
-										"Each pull request must contain exactly one redesign.",
-										"Verify that the project compiles locally (npm run build) before submitting.",
-										"You must be the original author or have explicit permission to list the work.",
-										"PR descriptions must include all metadata: GitHub URL, Author, and Preview Image."
-									].map((text, i) => (
-										<li key={i} className="flex gap-3 text-sm leading-relaxed">
-											<CheckCircle2 className="size-5 text-primary shrink-0" />
-											<span className="text-muted-foreground">
-												<strong className="text-foreground">{text.split(':')[0]}</strong>
-												{text.includes(':') ? text.split(':')[1] : text}
-											</span>
-										</li>
-									))}
+										["Single Redesign:", "Each pull request must contain exactly one submission to ensure a focused review."],
+										["Local Verification:", "You must verify the project compiles successfully (npm run build) before submitting."],
+										["Verified Ownership:", "You must be the original author or provide explicit, verifiable permission to list the work."],
+										["Complete Metadata:", "PR descriptions must include all required fields: GitHub URL, Author, and Preview Image."],
+										["Continued Maintenance:", "Redesigns must be kept up to date with the latest upstream changes to remain listed."],
+									].map(([title, description], i) => {
+
+										return (
+											<li key={i} className="flex gap-3 text-sm leading-relaxed items-center">
+												<CheckCircle2 className="size-6 text-primary shrink-0" />
+												<span className="text-muted-foreground">
+													<strong className="text-foreground block mb-0.5">{title}</strong>
+													{description}
+												</span>
+											</li>
+										)
+									})}
 								</ul>
 							</CardContent>
 						</Card>
@@ -95,7 +99,7 @@ export default function SubmitPage() {
 						<div className="flex items-start gap-3 rounded-lg border border-yellow-500/20 bg-yellow-500/5 p-4 text-sm text-yellow-600 dark:text-yellow-500">
 							<AlertCircle className="size-5 shrink-0" />
 							<p>
-								Submissions that do not follow these conditions will be closed.
+								Submissions that do not follow these conditions will not be considered and the pull request will be closed.
 							</p>
 						</div>
 					</section>
