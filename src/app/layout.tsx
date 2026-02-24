@@ -4,9 +4,9 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { ThemeProvider } from "@/components/theme-provider";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import "./globals.css";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,8 +19,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Ox Redesigns",
-  description: "A curated collection of redesigns of overextended resources",
+  title: 'Ox Redesigns',
+  description: 'A curated collection of redesigns of overextended resources',
+	icons: {
+		icon: 'https://overextended-redesigns.vercel.app/favicon.ico',
+		shortcut: 'https://overextended-redesigns.vercel.app/oxpug.webp',
+	},
+	keywords: ['fivem', 'overextended', 'ox_inventory', 'ox_lib', 'redesign'],
 };
 
 export default function RootLayout({
