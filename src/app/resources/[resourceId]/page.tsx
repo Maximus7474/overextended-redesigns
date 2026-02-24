@@ -9,6 +9,7 @@ import { GithubIcon } from "@/components/custom-icons";
 import { NotFoundDisplay } from "@/components/not-found";
 import { Redesign } from "@/types";
 import { Metadata } from "next";
+import { shuffleArray } from "@/lib/utils";
 
 interface PageProps {
   params: Promise<{ resourceId: string }>;
@@ -66,7 +67,7 @@ export default async function ResourceDetailPage({ params }: PageProps) {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-					{resource.redesigns.map((redesign) => (
+					{shuffleArray(resource.redesigns).map((redesign) => (
 						<ResourceCard key={redesign.id} {...redesign} resourceId={resource.id} />
 					))}
         </div>
