@@ -1,9 +1,5 @@
 # Overextended Redesigns
 
-> [!IMPORTANT]  
-> This project is not active, PRs / issues will not be considered.
-> Please come again later.
-
 > [!NOTE]  
 > This project is **not affiliated** with either [overextended](https://github.com/overextended) or [Community Ox](https://github.com/CommunityOx).
 > It is a third party project to contribute externally with these projects by serving as a central point to share redesigns of the resources created originally by overextended.
@@ -12,7 +8,7 @@
  
 To guarantee that every redesign listed here is safe, performant, and follows decent coding practices, we hold all contributors to a high standard.
 
-Before opening a Pull Request, ensure your work aligns with our [submission guidelines](https://www.youtube.com/watch?v=dQw4w9WgXcQ). Submissions are manually vetted; if a PR is incomplete or does not meet our quality bar, it will not be merged.
+Before opening a Pull Request, ensure your work aligns with our [submission guidelines](https://overextended-redesigns.vercel.app/contribute). Submissions are manually vetted; if a PR is incomplete or does not meet our quality bar, it will not be merged.
 
 *Note: You must own the redesign or provide proof of authorization to share it. Please submit only one redesign per PR.*
 
