@@ -140,9 +140,9 @@ export default function SubmitPage() {
 							</CardDescription>
 						</CardHeader>
 						<CardContent className="flex justify-center pb-8">
-							<Button size="lg" className="rounded-full px-8 h-12 text-lg" asChild>
+							<Button size="lg" className="group rounded-full px-8 h-12 text-lg" asChild>
 								<a href="https://github.com/Maximus7474/overextended-redesigns/fork" target="_blank">
-									Fork the Repository <ArrowRight className="ml-2 size-5" />
+									Fork the Repository <ArrowRight className="size-5 transition-transform group-hover:translate-x-1" />
 								</a>
 							</Button>
 						</CardContent>
