@@ -17,6 +17,38 @@ import {
 	Book,
 } from "lucide-react";
 
+const techRequirements = [
+	{ 
+		Icon: GithubIcon as LucideIcon, 
+		title: "Open Source", 
+		description: "Your work must be hosted on a public GitHub repository with the GPL-V3 license." 
+	},
+	{ 
+		Icon: FileBraces, 
+		title: "Clean Code", 
+		description: "Scripts should be optimized and free of obfuscation to ensure community trust." 
+	},
+	{ 
+		Icon: BookOpenCheck, 
+		title: "Documentation", 
+		description: "Include a clear README with installation steps and dependency lists." 
+	},
+	{ 
+		Icon: CloudDownload, 
+		title: "Up to Date", 
+		description: "Your redesign needs to be up to date with the latest CommunityOx or Overextended reference." 
+	}
+];
+
+const contribRules = [
+	["Single Redesign:", "Each pull request must contain exactly one submission to ensure a focused review."],
+	["Local Verification:", "You must verify the project compiles successfully (npm run build) before submitting."],
+	["Licensing Compliance:", "Submissions must adhere to the original work's license (GPLv3). We do not accept obfuscated or 'locked' code."],
+	["Mandatory Attribution:", "You must clearly credit the original author. Submissions claiming 100% original ownership of derivative works will be rejected."],
+	["Public Hosting:", "All resources must be hosted on a public GitHub repository to allow for community auditing and transparency."],
+	["Author Opt-Out:", "We honor takedown requests from verified original authors who do not wish to have their work showcased here."],
+];
+
 export default function SubmitPage() {
 	return (
 		<div className="container mx-auto px-4 py-16">
@@ -40,26 +72,14 @@ export default function SubmitPage() {
 							<h2 className="text-2xl font-bold">Technical Requirements</h2>
 						</div>
 						<div className="grid sm:grid-cols-2 gap-4">
-							<RequirementCard
-								Icon={GithubIcon as LucideIcon}
-								title="Open Source"
-								description="Your work must be hosted on a public GitHub repository with the GPL-V3 license."
-							/>
-							<RequirementCard
-								Icon={FileBraces}
-								title="Clean Code"
-								description="Scripts should be optimized and free of obfuscation to ensure community trust."
-							/>
-							<RequirementCard
-								Icon={BookOpenCheck}
-								title="Documentation"
-								description="Include a clear README with installation steps and dependency lists."
-							/>
-							<RequirementCard
-								Icon={CloudDownload}
-								title="Up to Date"
-								description="Your redesign needs to be up to date with the current version of the resource."
-							/>
+							{techRequirements.map((req, index) => (
+								<RequirementCard
+									key={index}
+									Icon={req.Icon}
+									title={req.title}
+									description={req.description}
+								/>
+							))}
 						</div>
 					</section>
 
@@ -74,16 +94,7 @@ export default function SubmitPage() {
 						<Card className="border-primary/10 bg-primary/5">
 							<CardContent>
 								<ul className="space-y-4">
-									{[
-										["Single Redesign:", "Each pull request must contain exactly one submission to ensure a focused review."],
-										["Local Verification:", "You must verify the project compiles successfully (npm run build) before submitting."],
-										["Licensing Compliance:", "Submissions must adhere to the original work's license (GPLv3). We do not accept obfuscated or 'locked' code."],
-										["Mandatory Attribution:", "You must clearly credit the original author. Submissions claiming 100% original ownership of derivative works will be rejected."],
-										["Public Hosting:", "All resources must be hosted on a public GitHub repository to allow for community auditing and transparency."],
-										["Author Opt-Out:", "We honor takedown requests from verified original authors who do not wish to have their work showcased here."],
-									].map(([title, description], i) => {
-
-										return (
+									{contribRules.map(([title, description], i) => (
 											<li key={i} className="flex gap-3 text-sm leading-relaxed items-center">
 												<CheckCircle2 className="size-6 text-primary shrink-0" />
 												<span className="text-muted-foreground">
@@ -92,7 +103,7 @@ export default function SubmitPage() {
 												</span>
 											</li>
 										)
-									})}
+									)}
 								</ul>
 							</CardContent>
 						</Card>
