@@ -1,5 +1,6 @@
 import { GithubIcon } from "@/components/custom-icons";
 import { RequirementCard } from "@/components/requirement-card";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
@@ -80,6 +81,8 @@ export default function SubmitPage() {
 										["Verified Ownership:", "You must be the original author or provide explicit, verifiable permission to list the work."],
 										["Complete Metadata:", "PR descriptions must include all required fields: GitHub URL, Author, and Preview Image."],
 										["Continued Maintenance:", "Redesigns must be kept up to date with the latest upstream changes to remain listed."],
+										["Maintenance Policy:", "Redesigns not updated within 3 months of an upstream change will be flagged as 'Unmaintained'."],
+										["Licensing & Forks:", "Submissions utilizing the GPLv3 license for compliance reasons will be tagged as 'GPLv3 Fork' to clarify support expectations."],
 									].map(([title, description], i) => {
 
 										return (
@@ -101,6 +104,50 @@ export default function SubmitPage() {
 							<p>
 								Submissions that do not follow these conditions will not be considered and the pull request will be closed.
 							</p>
+						</div>
+					</section>
+
+					<Separator className="my-4" />
+
+					<section className="space-y-6">
+						<div className="flex items-center gap-2">
+							<ShieldCheck className="size-6 text-primary" />
+							<h2 className="text-2xl font-bold">Status Definitions</h2>
+						</div>
+						<p className="text-muted-foreground">
+							We use flags to help users understand the current state of a redesign.
+						</p>
+						
+						<div className="grid sm:grid-cols-3 gap-4">
+							<div className="p-4 rounded-lg border bg-card">
+								<Badge variant="outline" className="mb-2 bg-yellow-500/10 text-yellow-600 border-yellow-500/20">
+									Unmaintained
+								</Badge>
+								<p className="text-xs text-muted-foreground">
+									Applied to resources that haven&apos;t been updated to match the latest CommunityOx reference 
+        					or still rely on outdated Overextended core releases.
+								</p>
+							</div>
+							
+							<div className="p-4 rounded-lg border bg-card shadow-sm">
+								<Badge variant="outline" className="mb-2 bg-blue-500/10 text-blue-600 border-blue-500/20">
+									GPLv3 Fork
+								</Badge>
+								<p className="text-xs leading-relaxed text-muted-foreground">
+									Indicates the resource was released to preserve the open-source nature of the original 
+									work in compliance with GPLv3 terms, ensuring code availability for the community.
+								</p>
+							</div>
+
+							<div className="p-4 rounded-lg border bg-card">
+								<Badge variant="outline" className="mb-2 bg-red-500/10 text-red-600 border-red-500/20">
+									No Support
+								</Badge>
+								<p className="text-xs text-muted-foreground">
+									Signals that the author is not providing active troubleshooting, installation help, 
+        					or regular maintenance for this specific release.
+								</p>
+							</div>
 						</div>
 					</section>
 
