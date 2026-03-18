@@ -15,7 +15,6 @@ import {
 	BookOpenCheck,
 	CloudDownload,
 	Book,
-	AlertCircle,
 } from "lucide-react";
 
 export default function SubmitPage() {
@@ -78,11 +77,10 @@ export default function SubmitPage() {
 									{[
 										["Single Redesign:", "Each pull request must contain exactly one submission to ensure a focused review."],
 										["Local Verification:", "You must verify the project compiles successfully (npm run build) before submitting."],
-										["Verified Ownership:", "You must be the original author or provide explicit, verifiable permission to list the work."],
-										["Complete Metadata:", "PR descriptions must include all required fields: GitHub URL, Author, and Preview Image."],
-										["Continued Maintenance:", "Redesigns must be kept up to date with the latest upstream changes to remain listed."],
-										["Maintenance Policy:", "Redesigns not updated within 3 months of an upstream change will be flagged as 'Unmaintained'."],
-										["Licensing & Forks:", "Submissions utilizing the GPLv3 license for compliance reasons will be tagged as 'GPLv3 Fork' to clarify support expectations."],
+										["Licensing Compliance:", "Submissions must adhere to the original work's license (GPLv3). We do not accept obfuscated or 'locked' code."],
+										["Mandatory Attribution:", "You must clearly credit the original author. Submissions claiming 100% original ownership of derivative works will be rejected."],
+										["Public Hosting:", "All resources must be hosted on a public GitHub repository to allow for community auditing and transparency."],
+										["Author Opt-Out:", "We honor takedown requests from verified original authors who do not wish to have their work showcased here."],
 									].map(([title, description], i) => {
 
 										return (
@@ -99,11 +97,16 @@ export default function SubmitPage() {
 							</CardContent>
 						</Card>
 
-						<div className="flex items-start gap-3 rounded-lg border border-yellow-500/20 bg-yellow-500/5 p-4 text-sm text-yellow-600 dark:text-yellow-500">
-							<AlertCircle className="size-5 shrink-0" />
-							<p>
-								Submissions that do not follow these conditions will not be considered and the pull request will be closed.
-							</p>
+						<div className="flex items-start gap-3 rounded-lg border border-blue-500/20 bg-blue-500/5 p-4 text-sm text-blue-600 dark:text-blue-400">
+							<ShieldCheck className="size-5 shrink-0 mt-0.5" />
+							<div className="space-y-1">
+								<p className="font-semibold">Author Protection Policy</p>
+								<p className="text-xs leading-relaxed opacity-90">
+									By submitting, you acknowledge that the original author retains the right to request 
+									removal. If a resource is shared for GPLv3 compliance without author involvement, 
+									it will be tagged as <strong>GPLv3 Fork</strong> and <strong>No Support</strong>.
+								</p>
+							</div>
 						</div>
 					</section>
 
