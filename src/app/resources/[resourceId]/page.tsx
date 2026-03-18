@@ -10,6 +10,7 @@ import { NotFoundDisplay } from "@/components/not-found";
 import { Redesign } from "@/types";
 import { Metadata } from "next";
 import { shuffleArray } from "@/lib/utils";
+import { FlagBadge } from "@/components/flag-badge";
 
 interface PageProps {
   params: Promise<{ resourceId: string }>;
@@ -86,7 +87,7 @@ export default async function ResourceDetailPage({ params }: PageProps) {
   );
 }
 
-function ResourceCard({ id, screenshot, name, description, features, resourceId }: Redesign & { resourceId: string }) {
+function ResourceCard({ id, screenshot, flags, name, description, features, resourceId }: Redesign & { resourceId: string }) {
 	return (
 		<Link
 			key={id}
@@ -114,8 +115,16 @@ function ResourceCard({ id, screenshot, name, description, features, resourceId 
 						<span>{stars.toLocaleString()}</span>
 					</div> */}
 
+					{flags && flags.length > 0 &&(
+						<div className="flex flex-wrap gap-2 mb-2">
+							{flags.map((flag) => (
+								<FlagBadge key={flag} flag={flag} />
+							))}
+						</div>
+					)}
+
 					<CardTitle className="group-hover:text-primary transition-colors">
-						{name}
+						<h1>{name}</h1>
 					</CardTitle>
 					<CardDescription className="line-clamp-2">
 						{description}
