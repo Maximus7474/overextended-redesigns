@@ -1,8 +1,11 @@
 import { LucideIcon } from "lucide-react";
 
+export type RedesignFlag = 'unmaintained' | 'gpl-compliant' | 'unsupported';
+
 export interface Redesign {
 	id: string;
 	name: string;
+	flags?: RedesignFlag[];
 	screenshot: string;
 	// stars: number;
 	// downloads: number;
