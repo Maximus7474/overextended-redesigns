@@ -4,13 +4,20 @@
 > This project is **not affiliated** with either [overextended](https://github.com/overextended) or [Community Ox](https://github.com/CommunityOx).
 > It is a third party project to contribute externally with these projects by serving as a central point to share redesigns of the resources created originally by overextended.
 
-## Contributing
- 
-To guarantee that every redesign listed here is safe, performant, and follows decent coding practices, we hold all contributors to a high standard.
+## Contributing & Author Rights
 
-Before opening a Pull Request, ensure your work aligns with our [submission guidelines](https://overextended-redesigns.vercel.app/contribute). Submissions are manually vetted; if a PR is incomplete or does not meet our quality bar, it will not be merged.
+To ensure every redesign listed here is safe, performant, and follows community standards, we hold all contributors to high technical and ethical requirements.
 
-*Note: You must own the redesign or provide proof of authorization to share it. Please submit only one redesign per PR.*
+### Open Submission Policy
+We welcome submissions from the community. Anyone may submit a redesign, provided it adheres to the original work's license (typically **GPLv3**). Submissions are manually vetted; if a PR is incomplete or fails to meet our quality bar, it will not be merged.
+
+### Author Protection & Opt-Out
+While we support the open sharing of derivative works under GPLv3, we respect the preferences of original creators. 
+
+* **Verified Ownership:** If you are the original author and wish to have a redesign of your work removed from our listings, please [open a "Take-Down" issue](https://github.com/Maximus7474/overextended-redesigns/issues/new?template=takedown_request.md) or contact [Maximus7474](https://github.com/Maximus7474).
+* **Flagging:** If a resource is shared without the original author's active involvement, it will be marked with the **GPLv3 Fork** and **No Support** flags to ensure users do not contact the original author for assistance.
+
+*Note: Please submit only one redesign per PR. Ensure your work aligns with our [submission guidelines](/contribute).*
 
 ## Development Guide
 
