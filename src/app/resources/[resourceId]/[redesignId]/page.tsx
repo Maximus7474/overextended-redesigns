@@ -1,25 +1,24 @@
 import Link from "next/link";
 import Image from "next/image";
-import { notFound } from "next/navigation";
 import { getRedesignById } from "@/data/resources";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { 
-  Star, 
-  Download, 
+import {
+  Download,
   ArrowLeft,
-  CheckCircle2, 
-  AlertCircle, 
-  BookOpen 
+  CheckCircle2,
+  AlertCircle,
+  BookOpen
 } from "lucide-react";
 import { GithubIcon } from "@/components/custom-icons";
 import { NotFoundDisplay } from "@/components/not-found";
 import FullScreenImage from "@/components/fullscreen-image";
+import { FlagBadge } from "@/components/flag-badge";
 
 interface PageProps {
-  params: Promise<{ 
-    resourceId: string; 
-    redesignId: string 
+  params: Promise<{
+    resourceId: string;
+    redesignId: string
   }>;
 }
 
@@ -60,6 +59,13 @@ export default async function RedesignDetailPage({ params }: PageProps) {
           <div className="space-y-4">
             <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
               <div>
+								{redesign.flags && redesign.flags.length > 0 &&(
+									<div className="flex flex-wrap gap-2 mb-2">
+										{redesign.flags.map((flag) => (
+											<FlagBadge key={flag} flag={flag} />
+										))}
+									</div>
+								)}
                 <h1 className="text-4xl font-bold tracking-tight mb-2 uppercase">
                   {redesign.name}
                 </h1>
