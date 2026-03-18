@@ -22,12 +22,12 @@ const FLAG_MAP: Record<RedesignFlag, FlagConfig> = {
   "gpl-compliant": {
     label: "GPLv3 Fork",
     description: "Shared under GPLv3 requirements. This version exists to ensure the code remains open-source as per the original license.",
-    className: "bg-blue-500/10 text-blue-600 border-blue-500/20 hover:bg-blue-500/20",
+    className: "bg-blue-500/10 text-blue-500 border-blue-500/20 hover:bg-blue-500/20",
   },
   unsupported: {
     label: "No Support",
     description: "The author of this redesign (and the original resource author) will not provide technical assistance for this version.",
-    className: "bg-red-500/10 text-red-600 border-red-500/20 hover:bg-red-500/20",
+    className: "bg-red-500/10 text-red-400 border-red-500/20 hover:bg-red-500/20",
   },
 };
 
