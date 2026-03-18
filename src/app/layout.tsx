@@ -7,6 +7,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import "./globals.css";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -44,13 +45,15 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="min-h-screen bg-background">
-            <Navbar />
-            <main>
-              {children}
-            </main>
-            <Footer />
-          </div>
+    			<TooltipProvider delayDuration={200}>
+						<div className="min-h-screen bg-background">
+							<Navbar />
+							<main>
+								{children}
+							</main>
+							<Footer />
+						</div>
+					</TooltipProvider>
         </ThemeProvider>
 				<SpeedInsights />
       </body>
