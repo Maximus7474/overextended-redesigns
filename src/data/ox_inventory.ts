@@ -32,5 +32,29 @@ export default {
 				"/redesigns/ox_inventory/maximus7474-inventory-redesign/image_2.webp",
 			],
 		},
+		{
+			id: "samueldev-inventory-redesign",
+			name: "Modern Panel Inventory",
+			screenshot: "/redesigns/ox_inventory/samueldev-inventory-redesign/main_screenshot.webp",
+			description: "A overhaul of the inventory with modern styling & clothing slots",
+			features: [
+				"Dark theme",
+				"Improved display",
+				"3D feeling",
+				"Search functionality"
+			],
+			requirements: [
+				"Default requirements for ox_inventory",
+			],
+			installationGuide: [
+				"Clone the repository from GitHub or Download latest release",
+				"If cloning the repository, build the ui using Bun"
+			],
+			githubUrl: "https://github.com/Samuels-Development/ox_inventory",
+			gallery: [
+				"/redesigns/ox_inventory/samueldev-inventory-redesign/image_1.webp",
+				"/redesigns/ox_inventory/samueldev-inventory-redesign/image_2.webp",
+			],
+		},
 	]
 } satisfies Resource;
