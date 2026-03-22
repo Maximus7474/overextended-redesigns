@@ -1,6 +1,6 @@
 import { LucideIcon } from "lucide-react";
 
-export type RedesignFlag = 'unmaintained' | 'gpl-compliant' | 'unsupported';
+export type RedesignFlag = 'unmaintained' | 'gpl-compliant' | 'unsupported' | 'beta';
 
 export interface Redesign {
 	id: string;

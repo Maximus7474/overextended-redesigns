@@ -29,6 +29,11 @@ const FLAG_MAP: Record<RedesignFlag, FlagConfig> = {
     description: "The author of this redesign (and the original resource author) will not provide technical assistance for this version.",
     className: "bg-red-500/10 text-red-400 border-red-500/20 hover:bg-red-500/20",
   },
+  beta: {
+    label: "Early-Access",
+    description: "This redesign is in early access; it contains unfinished features and may have bugs.",
+  	className: "bg-orange-500/10 text-orange-500 border-orange-500/20 hover:bg-orange-500/20",
+  },
 };
 
 export function FlagBadge({ flag }: { flag: RedesignFlag }) {
