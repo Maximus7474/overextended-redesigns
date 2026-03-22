@@ -56,5 +56,30 @@ export default {
 				"/redesigns/ox_inventory/samueldev-inventory-redesign/image_2.webp",
 			],
 		},
+		{
+			id: "hootrosa-grid-inventory",
+			name: "Grid Inventory",
+			screenshot: "/redesigns/ox_inventory/hootrosa-grid-inventory/main_screenshot.webp",
+			description: "A grid based inventory rework",
+			features: [
+				"Grid based",
+				"Modern design",
+				"Item sorting",
+				"Search functionality"
+			],
+			requirements: [
+				"Default requirements for ox_inventory",
+			],
+			installationGuide: [
+				"Clone the repository from GitHub or Download latest release",
+				"If cloning the repository, build the ui using Bun"
+			],
+			githubUrl: "https://github.com/HootroSA/ox_inventory-gridstyle",
+			gallery: [
+				"/redesigns/ox_inventory/hootrosa-grid-inventory/image_1.webp",
+				"/redesigns/ox_inventory/hootrosa-grid-inventory/image_2.webp",
+				"/redesigns/ox_inventory/hootrosa-grid-inventory/image_3.webp",
+			],
+		},
 	]
 } satisfies Resource;
