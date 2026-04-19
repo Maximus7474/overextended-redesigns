@@ -11,7 +11,7 @@ export interface Redesign {
 	// downloads: number;
 	description: string;
 	features: string[];
-	requirements?: string[];
+	requirements: string[];
 	installationGuide?: string[];
 	githubUrl: string;
 	githubReleaseUrl?: string;
