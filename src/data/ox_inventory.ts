@@ -85,6 +85,7 @@ export default {
 		{
 			id: "nolag-clothing-inventory",
 			name: "Inventory with Clothing",
+			flags: ['unmaintained'],
 			screenshot: "/redesigns/ox_inventory/nolag-clothing-inventory/main_screenshot.webp",
 			description: "A inventory redesign including clothing slots",
 			features: [
