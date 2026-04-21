@@ -61,6 +61,7 @@ export default {
 			name: "Grid Inventory",
 			screenshot: "/redesigns/ox_inventory/hootrosa-grid-inventory/main_screenshot.webp",
 			description: "A grid based inventory rework",
+			flags: ['beta'],
 			features: [
 				"Grid based",
 				"Modern design",
