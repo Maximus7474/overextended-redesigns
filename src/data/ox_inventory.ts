@@ -109,5 +109,30 @@ export default {
 				"/redesigns/ox_inventory/nolag-clothing-inventory/image_2.webp",
 			],
 		},
+		{
+			id: "inventory-with-rarity-inventory",
+			name: "Inventory with Rarities",
+			flags: ['unmaintained', 'gpl-compliant'],
+			screenshot: "/redesigns/ox_inventory/inventory-with-rarity-inventory/main_screenshot.webp",
+			description: "A inventory redesign with item rarity and fast slots",
+			features: [
+				"Rarities",
+				"Dark theme",
+				"Full Screen",
+				"Separate Hotbar",
+			],
+			requirements: [
+				"Default requirements for ox_inventory",
+			],
+			installationGuide: [
+				"Clone the repository from GitHub or Download latest release",
+				"If cloning the repository, build the ui using Bun",
+			],
+			githubUrl: "https://github.com/DemiAutomatic/ox_inv_redesign",
+			gallery: [
+				"/redesigns/ox_inventory/inventory-with-rarity-inventory/image_1.webp",
+				"/redesigns/ox_inventory/inventory-with-rarity-inventory/image_2.webp",
+			],
+		},
 	]
 } satisfies Resource;
