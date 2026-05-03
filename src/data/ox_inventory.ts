@@ -134,5 +134,28 @@ export default {
 				"/redesigns/ox_inventory/inventory-with-rarity-inventory/image_2.webp",
 			],
 		},
+		{
+			id: "mmbaxd-inventory-redesign",
+			name: "Inventory Redesign",
+			screenshot: "/redesigns/ox_inventory/mmbaxd-inventory-redesign/main_screenshot.webp",
+			description: "A inventory redesign with item rarity and fast slots",
+			features: [
+				"Custom dark theme",
+				"Oswald font",
+				"Full Screen",
+			],
+			requirements: [
+				"Default requirements for ox_inventory",
+			],
+			installationGuide: [
+				"Clone the repository from GitHub",
+				"Build the ui using npm or pnpm",
+			],
+			githubUrl: "https://github.com/Mmbaxd/ox_Inventory",
+			gallery: [
+				"/redesigns/ox_inventory/mmbaxd-inventory-redesign/image_1.webp",
+				"/redesigns/ox_inventory/mmbaxd-inventory-redesign/image_2.webp",
+			],
+		},
 	]
 } satisfies Resource;
