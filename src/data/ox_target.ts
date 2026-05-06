@@ -34,5 +34,18 @@ export default {
 			githubUrl: "https://github.com/HELLO5M/ox_target",
 			gallery: [],
 		},
+		{
+			id: "reluctantdev-target-redesign",
+			name: "Modern Target Redesign",
+			screenshot: "/redesigns/ox_target/reluctantdev/main_screenshot.webp",
+			description: "A modern touch to ox_target's UI",
+			features: [],
+			requirements: [],
+			installationGuide: [
+				"Clone the repository from GitHub or Download latest release"
+			],
+			githubUrl: "https://github.com/ReluctantDevelopment/ox_target-Redesign",
+			gallery: [],
+		},
 	]
 } satisfies Resource;
