@@ -13,12 +13,25 @@ export default {
 			name: "Modern UI target",
 			screenshot: "/redesigns/ox_target/iamlation-target-redesign/main_screenshot.webp",
 			description: "A modern UI feel to ox_target",
-			features: [ "Modern UI" ],
+			features: ["Modern UI"],
 			requirements: [],
 			installationGuide: [
 				"Clone the repository from GitHub or Download latest release"
 			],
 			githubUrl: "https://github.com/IamLation/ox_target",
+			gallery: [],
+		},
+		{
+			id: "hello5m-target-redesign",
+			name: "Target Redesign",
+			screenshot: "/redesigns/ox_target/hello5m-target-redesign/main_screenshot.webp",
+			description: "A sleek, futuristic redesign of ox_target",
+			features: [],
+			requirements: [],
+			installationGuide: [
+				"Clone the repository from GitHub or Download latest release"
+			],
+			githubUrl: "https://github.com/HELLO5M/ox_target",
 			gallery: [],
 		},
 	]
