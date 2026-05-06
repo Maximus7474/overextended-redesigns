@@ -101,9 +101,9 @@ export default async function RedesignDetailPage({ params }: PageProps) {
         </div>
 
         {/* Content Grid */}
-        <div className="grid lg:grid-cols-2 gap-8 mb-12">
+        {redesign.features.length > 0 && redesign.requirements.length > 0 && <div className="grid lg:grid-cols-2 gap-8 mb-12">
           {/* Features */}
-          <Card className="border-primary/20 bg-primary/5">
+          {redesign.features.length > 0 && <Card className="border-primary/20 bg-primary/5">
             <CardHeader>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="size-5 text-primary" />
@@ -123,10 +123,10 @@ export default async function RedesignDetailPage({ params }: PageProps) {
                 ))}
               </ul>
             </CardContent>
-          </Card>
+          </Card>}
 
           {/* Requirements */}
-          {redesign.requirements && redesign.requirements.length > 0 && (
+          {redesign.requirements.length > 0 && (
             <Card>
               <CardHeader>
                 <div className="flex items-center gap-2">
@@ -149,7 +149,7 @@ export default async function RedesignDetailPage({ params }: PageProps) {
               </CardContent>
             </Card>
           )}
-        </div>
+        </div>}
 
         {/* Installation Guide */}
         {redesign.installationGuide && redesign.installationGuide.length > 0 && (

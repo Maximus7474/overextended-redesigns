@@ -82,5 +82,80 @@ export default {
 				"/redesigns/ox_inventory/hootrosa-grid-inventory/image_3.webp",
 			],
 		},
+		{
+			id: "nolag-clothing-inventory",
+			name: "Inventory with Clothing",
+			flags: ['unmaintained'],
+			screenshot: "/redesigns/ox_inventory/nolag-clothing-inventory/main_screenshot.webp",
+			description: "A inventory redesign including clothing slots",
+			features: [
+				"Clothing",
+				"Dark theme",
+				"Full Screen",
+			],
+			requirements: [
+				"Default requirements for ox_inventory",
+				"Illenium Appearance"
+			],
+			installationGuide: [
+				"Clone the repository from GitHub or Download latest release",
+				"If cloning the repository, build the ui using Bun",
+				"Install Illenium-Appearance",
+				"Replace files in Illenium-Appearance with those in \"INSTALL/illenium-appearance\""
+			],
+			githubUrl: "https://github.com/NoLag-Development/ox_inventory",
+			gallery: [
+				"/redesigns/ox_inventory/nolag-clothing-inventory/image_1.webp",
+				"/redesigns/ox_inventory/nolag-clothing-inventory/image_2.webp",
+			],
+		},
+		{
+			id: "inventory-with-rarity-inventory",
+			name: "Inventory with Rarities",
+			flags: ['unmaintained', 'gpl-compliant'],
+			screenshot: "/redesigns/ox_inventory/inventory-with-rarity-inventory/main_screenshot.webp",
+			description: "A inventory redesign with item rarity and fast slots",
+			features: [
+				"Rarities",
+				"Dark theme",
+				"Full Screen",
+				"Separate Hotbar",
+			],
+			requirements: [
+				"Default requirements for ox_inventory",
+			],
+			installationGuide: [
+				"Clone the repository from GitHub or Download latest release",
+				"If cloning the repository, build the ui using Bun",
+			],
+			githubUrl: "https://github.com/DemiAutomatic/ox_inv_redesign",
+			gallery: [
+				"/redesigns/ox_inventory/inventory-with-rarity-inventory/image_1.webp",
+				"/redesigns/ox_inventory/inventory-with-rarity-inventory/image_2.webp",
+			],
+		},
+		{
+			id: "mmbaxd-inventory-redesign",
+			name: "Inventory Redesign",
+			screenshot: "/redesigns/ox_inventory/mmbaxd-inventory-redesign/main_screenshot.webp",
+			description: "A inventory redesign with item rarity and fast slots",
+			features: [
+				"Custom dark theme",
+				"Oswald font",
+				"Full Screen",
+			],
+			requirements: [
+				"Default requirements for ox_inventory",
+			],
+			installationGuide: [
+				"Clone the repository from GitHub",
+				"Build the ui using npm or pnpm",
+			],
+			githubUrl: "https://github.com/Mmbaxd/ox_Inventory",
+			gallery: [
+				"/redesigns/ox_inventory/mmbaxd-inventory-redesign/image_1.webp",
+				"/redesigns/ox_inventory/mmbaxd-inventory-redesign/image_2.webp",
+			],
+		},
 	]
 } satisfies Resource;
