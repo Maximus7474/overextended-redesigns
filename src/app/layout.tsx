@@ -57,6 +57,7 @@ export default function RootLayout({
 					</TooltipProvider>
         </ThemeProvider>
 				<SpeedInsights />
+				<Analytics />
       </body>
     </html>
   );
