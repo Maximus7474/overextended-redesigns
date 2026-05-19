@@ -26,5 +26,24 @@ export default {
 				"/redesigns/ox_lib/rome-lib-redesign/image_2.webp",
 			],
 		},
+		{
+			id: "reluctant-redesign",
+			name: "Inspired Lib Redesign",
+			screenshot: "/redesigns/ox_lib/reluctant-redesign/main_screenshot.webp",
+			description: "A modern lib visual redesign",
+			features: [],
+			requirements: [],
+			installationGuide: [
+				"Clone the repository from GitHub",
+				"Build the web app or extract the build from web/build.zip"
+			],
+			githubUrl: "https://github.com/ReluctantDevelopment/ox_lib-redesign",
+			gallery: [
+				"/redesigns/ox_lib/reluctant-redesign/image_1.webp",
+				"/redesigns/ox_lib/reluctant-redesign/image_2.webp",
+				"/redesigns/ox_lib/reluctant-redesign/image_3.webp",
+				"/redesigns/ox_lib/reluctant-redesign/image_4.webp",
+			],
+		},
 	]
 } satisfies Resource;
