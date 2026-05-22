@@ -157,5 +157,29 @@ export default {
 				"/redesigns/ox_inventory/mmbaxd-inventory-redesign/image_2.webp",
 			],
 		},
+		{
+			id: "hyperscripts-inventory-redesign",
+			name: "Hyper UI Redesign",
+			screenshot: "/redesigns/ox_inventory/hyperscripts-inventory-redesign/main_screenshot.webp",
+			description: "A cleaner and more modern redesign of ox_inventory built to improve readability, layout, and overall user experience without changing core functionality.",
+			features: [
+				"Clean visuals",
+				"Player status display",
+				"Better UX",
+				"Same functionality",
+			],
+			requirements: [
+				"Default requirements for ox_inventory",
+			],
+			installationGuide: [
+				"Clone the repository from GitHub",
+				"Build the ui using npm or pnpm",
+			],
+			githubUrl: "https://github.com/ashurana01/ox_inventory-Redesign-by-HyperScripts",
+			gallery: [
+				"/redesigns/ox_inventory/hyperscripts-inventory-redesign/image_1.webp",
+				"/redesigns/ox_inventory/hyperscripts-inventory-redesign/image_2.webp",
+			],
+		},
 	]
 } satisfies Resource;
