@@ -45,5 +45,30 @@ export default {
 				"/redesigns/ox_lib/reluctant-redesign/image_4.webp",
 			],
 		},
+		{
+			id: "subj3ct-redesign",
+			name: "Glassomorphism Lib Redesign",
+			screenshot: "/redesigns/ox_lib/subj3ct-redesign/main_screenshot.webp",
+			description: "A light theme take on ox lib redesign with glassopmorphism",
+			features: [
+				"ligth/dark theme",
+				"glassomorphism"
+			],
+			requirements: [
+				"Package manager (bun, npm, pnpm)"
+			],
+			installationGuide: [
+				"Clone / Download the repository from GitHub",
+				"Build the user interface in the web folder"
+			],
+			githubUrl: "https://github.com/Subj3ct/ox_lib_redesign",
+			gallery: [
+				"/redesigns/ox_lib/subj3ct-redesign/image_1.webp",
+				"/redesigns/ox_lib/subj3ct-redesign/image_2.webp",
+				"/redesigns/ox_lib/subj3ct-redesign/image_3.webp",
+				"/redesigns/ox_lib/subj3ct-redesign/image_4.webp",
+				"/redesigns/ox_lib/subj3ct-redesign/image_5.webp",
+			],
+		},
 	]
 } satisfies Resource;
