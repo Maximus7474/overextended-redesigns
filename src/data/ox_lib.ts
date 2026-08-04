@@ -70,5 +70,29 @@ export default {
 				"/redesigns/ox_lib/subj3ct-redesign/image_5.webp",
 			],
 		},
+		{
+			id: "jaramiyo-lib-redesign",
+			name: "Cute Cacao & Rose Lib",
+			screenshot: "/redesigns/ox_lib/jaramiyo-lib-redesign/main_screenshot.webp",
+			description: "A soft cacao + rose reskin of every ox_lib UI surface",
+			flags: ['gpl-compliant', 'unsupported'],
+			features: [
+				"Cacao + soft-pink Mantine theme, rounded corners, sticker shadows",
+				"Restyled notifications, context / list / radial menus, dialogs, progress, skill check, text UI",
+				"Baloo 2 / Karla / JetBrains Mono fonts bundled locally (no CDN)",
+				"UI-only: ox_lib logic, exports and locales untouched",
+			],
+			requirements: [],
+			installationGuide: [
+				"Recommended: copy web/build over your ox_lib/web/build and restart",
+				"Or clone / download and use as your ox_lib (based on ox_lib 3.39.0)",
+			],
+			githubUrl: "https://github.com/JaramiyoSM/ox_lib-jaramiyo",
+			gallery: [
+				"/redesigns/ox_lib/jaramiyo-lib-redesign/image_1.webp",
+				"/redesigns/ox_lib/jaramiyo-lib-redesign/image_2.webp",
+				"/redesigns/ox_lib/jaramiyo-lib-redesign/image_3.webp",
+			],
+		},
 	]
 } satisfies Resource;
