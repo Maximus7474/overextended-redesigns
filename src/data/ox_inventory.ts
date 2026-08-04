@@ -181,5 +181,33 @@ export default {
 				"/redesigns/ox_inventory/hyperscripts-inventory-redesign/image_2.webp",
 			],
 		},
+		{
+			id: "jaramiyo-inventory-redesign",
+			name: "Cute Cacao & Rose Inventory",
+			screenshot: "/redesigns/ox_inventory/jaramiyo-inventory-redesign/main_screenshot.webp",
+			description: "A cute cacao + rose rebuild: one panel, three tabs (inventory, appearance, settings)",
+			flags: ['gpl-compliant', 'unsupported'],
+			features: [
+				"Single panel with 3 tabs (inventory, appearance, settings)",
+				"Clothing slots with in-game dressing animation and toggle hair",
+				"Self-contained Multi Job (ESX / Qbox), configurable via convar",
+				"Live item search and live colour picker",
+				"Bilingual English / Spanish from the locale files",
+				"Synthesised sound effects (no audio files)",
+			],
+			requirements: ["Default ox_inventory requirements (ox_lib, oxmysql)"],
+			installationGuide: [
+				"Download or clone and rename the folder to ox_inventory",
+				"Complete resource (source + compiled web/build); use it in place of your ox_inventory",
+				"Optional convars: inventory:framework and inventory:jrmyMaxJobs",
+			],
+			githubUrl: "https://github.com/JaramiyoSM/ox_inventory-jaramiyo",
+			gallery: [
+				"/redesigns/ox_inventory/jaramiyo-inventory-redesign/image_1.webp",
+				"/redesigns/ox_inventory/jaramiyo-inventory-redesign/image_2.webp",
+				"/redesigns/ox_inventory/jaramiyo-inventory-redesign/image_3.webp",
+				"/redesigns/ox_inventory/jaramiyo-inventory-redesign/image_4.webp",
+			],
+		},
 	]
 } satisfies Resource;
