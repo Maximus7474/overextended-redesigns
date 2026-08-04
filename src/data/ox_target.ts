@@ -47,5 +47,28 @@ export default {
 			githubUrl: "https://github.com/ReluctantDevelopment/ox_target-Redesign",
 			gallery: [],
 		},
+		{
+			id: "jaramiyo-target-redesign",
+			name: "Cute Rose Reticle",
+			screenshot: "/redesigns/ox_target/jaramiyo-target-redesign/main_screenshot.webp",
+			description: "The third-eye reticle reimagined as a little rose that blooms on lock-on, with cacao option cards",
+			features: [
+				"Reticle is a rose that breathes, then blooms bright pink and scales on lock-on",
+				"Cacao option cards with rose icon chips, staggered slide-in",
+				"Baloo 2 type, cacao + soft-pink palette",
+				"Visual only: all ox_target logic untouched",
+			],
+			requirements: ["ox_lib"],
+			installationGuide: [
+				"Clone / Download and rename the folder to ox_target, then ensure it",
+				"Reskin only: copy the web/ folder over your ox_target's web/ and restart",
+			],
+			githubUrl: "https://github.com/JaramiyoSM/ox_target-jaramiyo",
+			gallery: [
+				"/redesigns/ox_target/jaramiyo-target-redesign/image_1.webp",
+				"/redesigns/ox_target/jaramiyo-target-redesign/image_2.webp",
+				"/redesigns/ox_target/jaramiyo-target-redesign/image_3.webp",
+			],
+		},
 	]
 } satisfies Resource;
