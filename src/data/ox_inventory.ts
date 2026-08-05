@@ -209,5 +209,24 @@ export default {
 				"/redesigns/ox_inventory/jaramiyo-inventory-redesign/image_4.webp",
 			],
 		},
+		{
+			id: "ddainusshaa-inventory-redesign",
+			name: "Clean Inventory Redesign",
+			screenshot: "/redesigns/ox_inventory/ddainusshaa-inventory-redesign/main_screenshot.webp",
+			description: "Clean and modern design with a focus on usability and aesthetics. This redesign aims to provide a more intuitive and visually appealing inventory experience for users.",
+			features: [
+				"Clean and modern design",
+			],
+			requirements: ["Default ox_inventory requirements (ox_lib, oxmysql)"],
+			installationGuide: [
+				"Clone the repository from GitHub",
+				"Remove the original ox_inventory resource and replace it with this one ( don't forget to save your items & images and other data from folders )",
+				"Build the interface using bun or pnpm. ( cd web && bun install && bun build )",
+			],
+			githubUrl: "https://github.com/ddainusshaa/ox_inventory",
+			gallery: [
+				"/redesigns/ox_inventory/ddainusshaa-inventory-redesign/main_screenshot.webp",
+			],
+		},
 	]
 } satisfies Resource;
