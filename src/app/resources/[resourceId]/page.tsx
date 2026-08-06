@@ -11,6 +11,8 @@ import { Redesign } from "@/types";
 import { Metadata } from "next";
 import { shuffleArray } from "@/lib/utils";
 import { FlagBadge } from "@/components/flag-badge";
+import { LikeButton } from "@/components/like-button";
+import { getLikesForRedesigns } from "@/lib/likes";
 
 interface PageProps {
   params: Promise<{ resourceId: string }>;
@@ -20,9 +22,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { resourceId } = await params;
   const resource = getResourceById(resourceId);
 
-	if (!resource) return {};
+  if (!resource) return {};
 
-	const description = 
+  const description =
     resource.description.charAt(0).toLowerCase() + resource.description.slice(1);
 
   return {
@@ -37,11 +39,16 @@ export default async function ResourceDetailPage({ params }: PageProps) {
 
   if (!resource) {
     return <NotFoundDisplay
-			title="Resource not found"
-			message="The resource you are looking for doesn't exist."
-			backLink="/resources"
-		/>
+      title="Resource not found"
+      message="The resource you are looking for doesn't exist."
+      backLink="/resources"
+    />
   }
+
+  const redesignIds = resource.redesigns.map((r) => r.id);
+	const likesData = await getLikesForRedesigns(redesignIds);
+
+	console.log(likesData);
 
   return (
     <div className="container mx-auto px-4 py-12">
@@ -59,21 +66,27 @@ export default async function ResourceDetailPage({ params }: PageProps) {
           <p className="text-lg text-muted-foreground">
             {resource.description}
           </p>
-					<Button variant="outline" size="sm" asChild>
-						<a href={resource.githubUrl} target="_blank" rel="noreferrer">
-							<GithubIcon className="mr-2 size-4" />
-							Original Repository
-						</a>
-					</Button>
+          <Button variant="outline" size="sm" asChild>
+            <a href={resource.githubUrl} target="_blank" rel="noreferrer">
+              <GithubIcon className="mr-2 size-4" />
+              Original Repository
+            </a>
+          </Button>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-					{shuffleArray(resource.redesigns).map((redesign) => (
-						<ResourceCard key={redesign.id} {...redesign} resourceId={resource.id} />
-					))}
+          {shuffleArray(resource.redesigns).map((redesign) => (
+            <ResourceCard
+              key={redesign.id}
+              {...redesign}
+              resourceId={resource.id}
+              initialLikesCount={likesData[redesign.id]?.count ?? 0}
+              initialHasLiked={likesData[redesign.id]?.hasLiked ?? false}
+            />
+          ))}
         </div>
 
-				{resource.redesigns.length === 0 && (
+        {resource.redesigns.length === 0 && (
           <div className="text-center py-20">
             <Layers className="size-16 mx-auto text-muted-foreground/50 mb-4" />
             <h3 className="text-xl font-semibold mb-2">No Redesigns Yet</h3>
@@ -87,71 +100,91 @@ export default async function ResourceDetailPage({ params }: PageProps) {
   );
 }
 
-function ResourceCard({ id, screenshot, flags, name, description, features, resourceId }: Redesign & { resourceId: string }) {
-	return (
-		<Link
-			key={id}
-			href={`/resources/${resourceId}/${id}`}
-			className="group"
-		>
-			<Card className="h-full overflow-hidden transition-all hover:shadow-lg hover:border-primary/50 pt-0">
-				<div className="relative aspect-video overflow-hidden bg-muted">
-					<Image
-						src={screenshot}
-						alt={name}
-						fill
-						className="object-cover transition-transform group-hover:scale-105"
-						sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-					/>
-				</div>
+function ResourceCard({
+  id,
+  screenshot,
+  flags,
+  name,
+  description,
+  features,
+  resourceId,
+  initialLikesCount,
+  initialHasLiked,
+}: Redesign & {
+  resourceId: string;
+  initialLikesCount: number;
+  initialHasLiked: boolean;
+}) {
+  return (
+    <Link
+      key={id}
+      href={`/resources/${resourceId}/${id}`}
+      className="group"
+    >
+      <Card className="h-full overflow-hidden transition-all hover:shadow-lg hover:border-primary/50 pt-0 relative">
+        <div className="relative aspect-video overflow-hidden bg-muted">
+          <Image
+            src={screenshot}
+            alt={name}
+            fill
+            className="object-cover transition-transform group-hover:scale-105"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
 
-				<CardHeader className="relative">
-					{/* 
-					Future implementation, add star tracking
-					<div
-						className="absolute -top-2 right-3 z-20 flex items-center gap-1.5 px-2 py-1 text-xs font-semibold"
-					>
-						<Star className="size-4 fill-current" />
-						<span>{stars.toLocaleString()}</span>
-					</div> */}
+          <div className="absolute top-3 right-3 z-20">
+            <LikeButton
+              assetId={id}
+              initialLikesCount={initialLikesCount}
+              initialHasLiked={initialHasLiked}
+            />
+            {/*
+	            Future implementation, add star tracking
+	            <div
+	              className="absolute -top-2 right-3 z-20 flex items-center gap-1.5 px-2 py-1 text-xs font-semibold"
+	            >
+	              <Star className="size-4 fill-current" />
+	              <span>{stars.toLocaleString()}</span>
+	            </div>
+            */}
+          </div>
+        </div>
 
-					{flags && flags.length > 0 &&(
-						<div className="flex flex-wrap gap-2 mb-2">
-							{flags.map((flag) => (
-								<FlagBadge key={flag} flag={flag} />
-							))}
-						</div>
-					)}
+        <CardHeader className="relative">
+          {flags && flags.length > 0 && (
+            <div className="flex flex-wrap gap-2 mb-2">
+              {flags.map((flag) => (
+                <FlagBadge key={flag} flag={flag} />
+              ))}
+            </div>
+          )}
 
-					<CardTitle className="group-hover:text-primary transition-colors">
-						<h1>{name}</h1>
-					</CardTitle>
-					<CardDescription className="line-clamp-2">
-						{description}
-					</CardDescription>
-				</CardHeader>
+          <CardTitle className="group-hover:text-primary transition-colors">
+            <h1>{name}</h1>
+          </CardTitle>
+          <CardDescription className="line-clamp-2">
+            {description}
+          </CardDescription>
+        </CardHeader>
 
-				<CardContent className="space-y-4">
-					<div className="flex flex-wrap gap-1.5">
-						{features.slice(0, 2).map((feature, index) => (
-							<Badge key={index} variant="outline" className="text-xs">
-								{feature}
-							</Badge>
-						))}
-						{features.length > 2 && (
-							<Badge variant="outline" className="text-xs">
-								+{features.length - 2} more
-							</Badge>
-						)}
-					</div>
+        <CardContent className="space-y-4">
+          <div className="flex flex-wrap gap-1.5">
+            {features.slice(0, 2).map((feature, index) => (
+              <Badge key={index} variant="outline" className="text-xs">
+                {feature}
+              </Badge>
+            ))}
+            {features.length > 2 && (
+              <Badge variant="outline" className="text-xs">
+                +{features.length - 2} more
+              </Badge>
+            )}
+          </div>
 
-					<p
-						className="w-full text-center"
-					>
-						View details
-					</p>
-				</CardContent>
-			</Card>
-		</Link>
-	);
+          <p className="w-full text-center">
+            View details
+          </p>
+        </CardContent>
+      </Card>
+    </Link>
+  );
 }
