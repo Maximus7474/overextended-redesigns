@@ -34,12 +34,17 @@ export function LikeButton({
     setLikesCount(nextCount);
 
     startTransition(async () => {
-      try {
-        const res = await toggleLike(assetId);
-        setHasLiked(res.liked);
-      } catch {
+    const res = await toggleLike(assetId);
+
+      if ("error" in res && res.error === "TOO_MANY_REQUESTS") {
         setHasLiked(hasLiked);
-        setLikesCount(likesCount);
+				setLikesCount(likesCount);
+				console.error(res.error, res.message);
+        return;
+      }
+
+      if (res.liked !== undefined) {
+        setHasLiked(res.liked);
       }
     });
   };
