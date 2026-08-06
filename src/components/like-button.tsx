@@ -12,6 +12,12 @@ interface LikeButtonProps {
   className?: string;
 }
 
+function formatNumber(value: number) {
+	if (value >= 1_000_000) return `${Math.floor(value / 1_000_000)}M`;
+	if (value >= 1_000) return `${Math.floor(value / 1_000)}k`;
+	return `${value}`
+}
+
 export function LikeButton({
   assetId,
   initialLikesCount,
@@ -68,7 +74,7 @@ export function LikeButton({
           hasLiked ? "fill-rose-500 text-rose-500" : "text-muted-foreground"
         )}
       />
-      <span>{likesCount}</span>
+      <span>{formatNumber(likesCount)}</span>
     </button>
   );
 }
