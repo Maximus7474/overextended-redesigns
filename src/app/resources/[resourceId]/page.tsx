@@ -1,18 +1,15 @@
 import Link from "next/link";
-import Image from "next/image";
 import { getResourceById } from "@/data/resources";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Layers } from "lucide-react";
 import { GithubIcon } from "@/components/custom-icons";
 import { NotFoundDisplay } from "@/components/not-found";
-import { Redesign } from "@/types";
 import { Metadata } from "next";
 import { shuffleArray } from "@/lib/utils";
-import { FlagBadge } from "@/components/flag-badge";
-import { LikeButton } from "@/components/like-button";
 import { getLikesForRedesigns } from "@/lib/likes";
+import { RedesignGrid, RedesignWithLikes } from "@/components/redesign-grid";
+
+export const dynamic = "force-dynamic";
 
 interface PageProps {
   params: Promise<{ resourceId: string }>;
@@ -30,7 +27,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: `${resource.name} - Ox Redesigns`,
     description: `Redesigns of ${resource.name}, ${description}`,
-  }
+  };
 }
 
 export default async function ResourceDetailPage({ params }: PageProps) {
@@ -38,17 +35,25 @@ export default async function ResourceDetailPage({ params }: PageProps) {
   const resource = getResourceById(resourceId);
 
   if (!resource) {
-    return <NotFoundDisplay
-      title="Resource not found"
-      message="The resource you are looking for doesn't exist."
-      backLink="/resources"
-    />
+    return (
+      <NotFoundDisplay
+        title="Resource not found"
+        message="The resource you are looking for doesn't exist."
+        backLink="/resources"
+      />
+    );
   }
 
   const redesignIds = resource.redesigns.map((r) => r.id);
-	const likesData = await getLikesForRedesigns(redesignIds);
+  const likesData = await getLikesForRedesigns(redesignIds);
 
-	console.log(likesData);
+  const redesignsWithLikes: RedesignWithLikes[] = resource.redesigns.map((redesign) => ({
+    ...redesign,
+    initialLikesCount: likesData[redesign.id]?.count ?? 0,
+    initialHasLiked: likesData[redesign.id]?.hasLiked ?? false,
+  }));
+
+  const initialShuffledRedesigns = shuffleArray(redesignsWithLikes);
 
   return (
     <div className="container mx-auto px-4 py-12">
@@ -74,19 +79,12 @@ export default async function ResourceDetailPage({ params }: PageProps) {
           </Button>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {shuffleArray(resource.redesigns).map((redesign) => (
-            <ResourceCard
-              key={redesign.id}
-              {...redesign}
-              resourceId={resource.id}
-              initialLikesCount={likesData[redesign.id]?.count ?? 0}
-              initialHasLiked={likesData[redesign.id]?.hasLiked ?? false}
-            />
-          ))}
-        </div>
-
-        {resource.redesigns.length === 0 && (
+        {resource.redesigns.length > 0 ? (
+          <RedesignGrid
+            initialItems={initialShuffledRedesigns}
+            resourceId={resource.id}
+          />
+        ) : (
           <div className="text-center py-20">
             <Layers className="size-16 mx-auto text-muted-foreground/50 mb-4" />
             <h3 className="text-xl font-semibold mb-2">No Redesigns Yet</h3>
@@ -97,94 +95,5 @@ export default async function ResourceDetailPage({ params }: PageProps) {
         )}
       </div>
     </div>
-  );
-}
-
-function ResourceCard({
-  id,
-  screenshot,
-  flags,
-  name,
-  description,
-  features,
-  resourceId,
-  initialLikesCount,
-  initialHasLiked,
-}: Redesign & {
-  resourceId: string;
-  initialLikesCount: number;
-  initialHasLiked: boolean;
-}) {
-  return (
-    <Link
-      key={id}
-      href={`/resources/${resourceId}/${id}`}
-      className="group"
-    >
-      <Card className="h-full overflow-hidden transition-all hover:shadow-lg hover:border-primary/50 pt-0 relative">
-        <div className="relative aspect-video overflow-hidden bg-muted">
-          <Image
-            src={screenshot}
-            alt={name}
-            fill
-            className="object-cover transition-transform group-hover:scale-105"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          />
-
-          <div className="absolute top-3 right-3 z-20">
-            <LikeButton
-              assetId={id}
-              initialLikesCount={initialLikesCount}
-              initialHasLiked={initialHasLiked}
-            />
-            {/*
-	            Future implementation, add star tracking
-	            <div
-	              className="absolute -top-2 right-3 z-20 flex items-center gap-1.5 px-2 py-1 text-xs font-semibold"
-	            >
-	              <Star className="size-4 fill-current" />
-	              <span>{stars.toLocaleString()}</span>
-	            </div>
-            */}
-          </div>
-        </div>
-
-        <CardHeader className="relative">
-          {flags && flags.length > 0 && (
-            <div className="flex flex-wrap gap-2 mb-2">
-              {flags.map((flag) => (
-                <FlagBadge key={flag} flag={flag} />
-              ))}
-            </div>
-          )}
-
-          <CardTitle className="group-hover:text-primary transition-colors">
-            <h1>{name}</h1>
-          </CardTitle>
-          <CardDescription className="line-clamp-2">
-            {description}
-          </CardDescription>
-        </CardHeader>
-
-        <CardContent className="space-y-4">
-          <div className="flex flex-wrap gap-1.5">
-            {features.slice(0, 2).map((feature, index) => (
-              <Badge key={index} variant="outline" className="text-xs">
-                {feature}
-              </Badge>
-            ))}
-            {features.length > 2 && (
-              <Badge variant="outline" className="text-xs">
-                +{features.length - 2} more
-              </Badge>
-            )}
-          </div>
-
-          <p className="w-full text-center">
-            View details
-          </p>
-        </CardContent>
-      </Card>
-    </Link>
   );
 }
