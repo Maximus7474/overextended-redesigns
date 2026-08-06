@@ -14,6 +14,8 @@ import { GithubIcon } from "@/components/custom-icons";
 import { NotFoundDisplay } from "@/components/not-found";
 import FullScreenImage from "@/components/fullscreen-image";
 import { FlagBadge } from "@/components/flag-badge";
+import { LikeButton } from "@/components/like-button";
+import { getLikesForRedesigns } from "@/lib/likes";
 
 interface PageProps {
   params: Promise<{
@@ -25,14 +27,19 @@ interface PageProps {
 export default async function RedesignDetailPage({ params }: PageProps) {
   const { resourceId, redesignId } = await params;
   const redesign = getRedesignById(resourceId, redesignId);
-	
-		if (!redesign) {
-			return <NotFoundDisplay
-				title="Redesign not found"
-				message="The redesign you are looking for doesn't exist."
-				backLink={`/resources/${resourceId}`}
-			/>
-		}
+
+  if (!redesign) {
+    return <NotFoundDisplay
+      title="Redesign not found"
+      message="The redesign you are looking for doesn't exist."
+      backLink={`/resources/${resourceId}`}
+    />
+  }
+
+  // Fetch initial like data for this specific redesign
+  const likesData = await getLikesForRedesigns([redesign.id]);
+  const initialLikesCount = likesData[redesign.id]?.count ?? 0;
+  const initialHasLiked = likesData[redesign.id]?.hasLiked ?? false;
 
   return (
     <div className="container mx-auto px-4 py-12">
@@ -49,7 +56,7 @@ export default async function RedesignDetailPage({ params }: PageProps) {
               src={redesign.screenshot}
               alt={redesign.name}
               fill
-              priority 
+              priority
               className="object-cover"
               sizes="(max-width: 1200px) 100vw, 1200px"
             />
@@ -59,13 +66,13 @@ export default async function RedesignDetailPage({ params }: PageProps) {
           <div className="space-y-4">
             <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
               <div>
-								{redesign.flags && redesign.flags.length > 0 &&(
-									<div className="flex flex-wrap gap-2 mb-2">
-										{redesign.flags.map((flag) => (
-											<FlagBadge key={flag} flag={flag} />
-										))}
-									</div>
-								)}
+                {redesign.flags && redesign.flags.length > 0 && (
+                  <div className="flex flex-wrap gap-2 mb-2">
+                    {redesign.flags.map((flag) => (
+                      <FlagBadge key={flag} flag={flag} />
+                    ))}
+                  </div>
+                )}
                 <h1 className="text-4xl font-bold tracking-tight mb-2 uppercase">
                   {redesign.name}
                 </h1>
@@ -74,8 +81,8 @@ export default async function RedesignDetailPage({ params }: PageProps) {
                 </p>
               </div>
               {/*
-							Future implementation, add star tracking
-							<div className="flex gap-4 md:flex-col md:items-end">
+              Future implementation, add star tracking
+              <div className="flex gap-4 md:flex-col md:items-end">
                 <div className="flex items-center gap-2 text-muted-foreground bg-secondary/50 px-3 py-1.5 rounded-full border">
                   <Star className="size-4 fill-yellow-500 text-yellow-500" />
                   <span className="font-semibold">{redesign.stars.toLocaleString()}</span>
@@ -85,71 +92,83 @@ export default async function RedesignDetailPage({ params }: PageProps) {
             </div>
 
             {/* Action Buttons */}
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap items-center gap-3">
+              <LikeButton
+                assetId={redesign.id}
+                initialLikesCount={initialLikesCount}
+                initialHasLiked={initialHasLiked}
+                className="h-10 px-4 text-sm"
+              />
               <Button asChild size="lg" className="rounded-full px-8">
                 <a href={redesign.githubUrl} target="_blank" rel="noopener noreferrer">
                   <GithubIcon className="mr-2 size-4" /> View on GitHub
                 </a>
               </Button>
-              {redesign.githubReleaseUrl && <Button asChild variant="outline" size="lg" className="rounded-full px-8">
-                <a href={`${redesign.githubReleaseUrl}`} target="_blank" rel="noopener noreferrer">
-                  <Download className="mr-2 size-4" /> Download Latest
-                </a>
-              </Button>}
+              {redesign.githubReleaseUrl && (
+                <Button asChild variant="outline" size="lg" className="rounded-full px-8">
+                  <a href={`${redesign.githubReleaseUrl}`} target="_blank" rel="noopener noreferrer">
+                    <Download className="mr-2 size-4" /> Download Latest
+                  </a>
+                </Button>
+              )}
             </div>
           </div>
         </div>
 
         {/* Content Grid */}
-        {redesign.features.length > 0 && redesign.requirements.length > 0 && <div className="grid lg:grid-cols-2 gap-8 mb-12">
-          {/* Features */}
-          {redesign.features.length > 0 && <Card className="border-primary/20 bg-primary/5">
-            <CardHeader>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="size-5 text-primary" />
-                <CardTitle>Features</CardTitle>
-              </div>
-              <CardDescription>
-                Key improvements and additions in this version
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <ul className="space-y-3">
-                {redesign.features.map((feature, index) => (
-                  <li key={index} className="flex items-start gap-3">
-                    <CheckCircle2 className="size-4 text-primary mt-1 flex-shrink-0" />
-                    <span className="text-sm leading-relaxed">{feature}</span>
-                  </li>
-                ))}
-              </ul>
-            </CardContent>
-          </Card>}
+        {redesign.features.length > 0 && redesign.requirements.length > 0 && (
+          <div className="grid lg:grid-cols-2 gap-8 mb-12">
+            {/* Features */}
+            {redesign.features.length > 0 && (
+              <Card className="border-primary/20 bg-primary/5">
+                <CardHeader>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="size-5 text-primary" />
+                    <CardTitle>Features</CardTitle>
+                  </div>
+                  <CardDescription>
+                    Key improvements and additions in this version
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-3">
+                    {redesign.features.map((feature, index) => (
+                      <li key={index} className="flex items-start gap-3">
+                        <CheckCircle2 className="size-4 text-primary mt-1 flex-shrink-0" />
+                        <span className="text-sm leading-relaxed">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+            )}
 
-          {/* Requirements */}
-          {redesign.requirements.length > 0 && (
-            <Card>
-              <CardHeader>
-                <div className="flex items-center gap-2">
-                  <AlertCircle className="size-5 text-destructive" />
-                  <CardTitle>Requirements</CardTitle>
-                </div>
-                <CardDescription>
-                  Necessary dependencies for a smooth setup
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-3">
-                  {redesign.requirements.map((requirement, index) => (
-                    <li key={index} className="flex items-start gap-3">
-                      <div className="size-1.5 rounded-full bg-destructive mt-2 flex-shrink-0" />
-                      <span className="text-sm">{requirement}</span>
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
-          )}
-        </div>}
+            {/* Requirements */}
+            {redesign.requirements.length > 0 && (
+              <Card>
+                <CardHeader>
+                  <div className="flex items-center gap-2">
+                    <AlertCircle className="size-5 text-destructive" />
+                    <CardTitle>Requirements</CardTitle>
+                  </div>
+                  <CardDescription>
+                    Necessary dependencies for a smooth setup
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-3">
+                    {redesign.requirements.map((requirement, index) => (
+                      <li key={index} className="flex items-start gap-3">
+                        <div className="size-1.5 rounded-full bg-destructive mt-2 flex-shrink-0" />
+                        <span className="text-sm">{requirement}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+            )}
+          </div>
+        )}
 
         {/* Installation Guide */}
         {redesign.installationGuide && redesign.installationGuide.length > 0 && (
@@ -197,8 +216,8 @@ export default async function RedesignDetailPage({ params }: PageProps) {
                     alt={`${redesign.name} screenshot ${index + 1}`}
                     imageClassName="object-cover"
                     sizes="(max-width: 768px) 100vw, 50vw"
-										width={768}
-										height={768}
+                    width={768}
+                    height={768}
                   />
                 </div>
               ))}
